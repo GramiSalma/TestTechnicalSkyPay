@@ -77,13 +77,9 @@ Les développements respectent les exigences des énoncés, utilisent **Java 11*
 
 Non, ce n’est **pas recommandé**, car cela viole le principe de **responsabilité unique** (*Single Responsibility Principle*).
 
-Mettre toutes les fonctionnalités dans une seule classe rend le code :
+Mettre toutes les fonctionnalités dans une seule classe rend le code :difficile à maintenir,moins lisible et moins testable.
 
-* difficile à maintenir,
-* plus fragile face aux changements,
-* moins lisible et moins testable.
-
-Il est préférable de séparer les responsabilités (ex : `ServiceUser`, `ServiceRoom`, `ServiceBooking`), pour une meilleure modularité, maintenabilité et réutilisabilité du code.
+C'est mieux de séparer les responsabilités (ex : `ServiceUser`, `ServiceRoom`, `ServiceBooking`).
 
 
 
@@ -93,4 +89,4 @@ Parce que quand quelqu’un réserve une chambre, il l’a fait avec un prix et 
 Sinon c’est comme dire au client : "Ah t’as réservé à 1000 dh, mais maintenant c’est 5000 dh, paye plus !"
 
 **Recommandation :**
-Il est **préférable de conserver l’état de la chambre au moment de la réservation (type, prix, etc.). Ainsi, la réservation reflète **les conditions acceptées à l’instant t**, même si la chambre est modifiée par la suite.
+On peut conserver l’état de la chambre au moment de la réservation (type, prix, etc.). Ainsi, la réservation reflète **les conditions acceptées à l’instant t**, même si la chambre est modifiée par la suite.
