@@ -13,15 +13,18 @@ public class App {
         AccountService account = new Account();
 
         System.out.println("\n--- Dépôts ---");
-        System.out.println("Dépôt de 1000€");
+        System.out.println("Dépôt de 1000");
         account.deposit(1000);
-        System.out.println("Dépôt de 500€");
-        account.deposit(500);
+        System.out.println("Dépôt de 2000");
+        account.deposit(2000);
 
         System.out.println("\n--- Retraits valides ---");
-        System.out.println("Retrait de 300€");
-        account.withdraw(300);
+        System.out.println("Retrait de 500");
 
+        account.withdraw(500);
+        System.out.println("\n--- Relevé des opérations bancaires ---");
+
+        account.printStatement();
         System.out.println("\n--- Cas d'erreurs : opérations invalides ---");
         try {
             System.out.println("Tentative de dépôt de -100€");
@@ -42,8 +45,7 @@ public class App {
             System.out.println("Erreur attendue : " + e.getMessage());
         }
 
-        System.out.println("\n--- Relevé des opérations bancaires ---");
-        account.printStatement();
+
 
         System.out.println("\n\n====================================================");
         System.out.println("===== TEST 2 : SERVICE DE RESERVATION D’HOTEL =====");
