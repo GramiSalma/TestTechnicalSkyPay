@@ -1,109 +1,96 @@
-# Skypay Technical Tests 
+
+# Skypay Technical Tests
 
 ## Présentation
 
-Ce dépôt contient deux solutions  pour les tests techniques Skypay :
+Ce dépôt contient deux solutions aux tests techniques Skypay :
 
-1. **Service Bancaire** : gestion d’un compte (dépôt, retrait, relevé des transactions).
-2. **Système de Réservation d’Hôtel** : gestion de chambres, utilisateurs et réservations, avec contrôle de cohérence et d’historique.
+1. **Service Bancaire** : gestion d’un compte (dépôt, retrait, relevé des transactions).
+2. **Système de Réservation d’Hôtel** : gestion des chambres, des utilisateurs et des réservations, avec contrôle de cohérence et historisation.
 
-Les développements respectent les exigences des 
-énoncés, utilisent Java 11 et JUnit 5,
-appliquent une gestion rigoureuse des exceptions.
+Les développements respectent les exigences des énoncés, utilisent **Java 11** et **JUnit 5**, et appliquent une gestion rigoureuse des exceptions.
 
 
 
-## 1. Service Bancaire
+##  Service Bancaire
 
-### Fonctionnalités
+###  Fonctionnalités
 
-- Dépôt et retrait d’argent sur un compte.
-- Affichage du relevé des transactions, du plus récent au plus ancien.
-- Gestion des erreurs : montants négatifs, solde insuffisant.
+* Dépôt et retrait d’argent sur un compte.
+* Affichage du relevé des transactions du plus récent au plus ancien.
+* Gestion des erreurs : montants invalides, solde insuffisant, date nulle.
 
+###  Structure
 
-### Structure
+* `AccountService` : interface imposée.
+* `Account` : implémentation de la logique métier.
+* `Transaction` : enregistrement d’une opération (date, montant, solde).
 
-- `AccountService` : interface imposée.
-- `Account` : implémentation de la logique métier.
-- `Transaction` : enregistrement d’une opération (date, montant, solde).
+###  Diagramme de classe
 
-### Diagramme de classe
 ![DiagramClasseBanking](https://github.com/user-attachments/assets/e805761e-66cd-4e79-9cb5-fc6eb5979e87)
 
-### Resultat de printStatement() 
+###  Résultat de `printStatement()`
+
 ![image](https://github.com/user-attachments/assets/ce56a85e-0b47-4c96-8589-3266a8afb197)
 
-### Resultat de test JUNIT 
+###  Résultats des tests JUnit
+
 ![image](https://github.com/user-attachments/assets/8ce76ea8-ebdd-472b-a948-9cd44547c52f)
 
+---
 
-
-
-## 2. Système de Réservation d’Hôtel
+##  2. Système de Réservation d’Hôtel
 
 ### Fonctionnalités
 
-- Création et modification de chambres et d’utilisateurs.
-- Réservation de chambres sur période donnée avec contrôle de disponibilité et de solde.
-- Historisation des données des réservations (snapshot).
-- Affichage des chambres et réservations, du plus récent au plus ancien.
-- Affichage des utilisateurs.
+* Création et modification de chambres et d’utilisateurs.
+* Réservation de chambres sur une période donnée avec contrôle de disponibilité et de solde.
+* Historisation des données des réservations .
+* Affichage des chambres et réservations du plus récent au plus ancien.
+* Affichage des utilisateurs existants.
 
 ### Structure
 
-- `Room`, `User`, `Booking` : entités principales.
-- `Service` : gestion de l’ensemble des opérations.
-- Enum `RoomType` : types de chambres.
-- Contrôle strict des erreurs et des périodes.
+* `Room`, `User`, `Booking` : entités principales.
+* `Service` : gestion centralisée des opérations.
+* `RoomType` : énumération des types de chambres.
+* Contrôle strict des erreurs, des soldes et des conflits de réservation.
 
-### Diagramme de classe
+###  Diagramme de classe
+
 ![classeHotel](https://github.com/user-attachments/assets/d4d1f00c-087b-41f9-88e1-c4a231a04cf7)
 
+###  Résultat de `printAll()` et `printAllUsers()`
 
-### Resultat de printAll() et printAllUsers()
 ![image](https://github.com/user-attachments/assets/c397b5be-c81c-4ad6-971e-29b766536163)
 
+### Résultats des tests JUnit
 
-### Resultat de test JUINIT
 ![image](https://github.com/user-attachments/assets/5ad6dcc4-14fa-40f2-b5ee-c82c06872bb0)
 
 
 
-- Cas nominaux et cas d’erreur (entrées invalides, conflits de réservation, ...)
+##  Réponses aux questions bonus
 
-## Réponses aux Questions Bonus 
+### 1. Est-il recommandé de placer toutes les fonctions dans un seul service ? Pourquoi ?
 
-### 1. Est-il recommandé de placer toutes les fonctions dans le même service ? Expliquez.
+Non, ce n’est **pas recommandé**, car cela viole le principe de **responsabilité unique** (*Single Responsibility Principle*).
 
-Non, ce n’est pas recommandé. Cela brule le pricipe de SingleResponsability. 
-Mettre toutes les fonctions dans 
-une seule classe/service 
-rend le code difficile à maintenir,
-à faire évoluer et à tester.
-C est mieux  de séparer les responsabilités
-(par exemple : ServiceUser, ServiceRoom, 
-ServiceBooking), ce qui améliore la lisibilité
-, la maintenance et la réutilisation du code.
+Mettre toutes les fonctionnalités dans une seule classe rend le code :
+
+* difficile à maintenir,
+* plus fragile face aux changements,
+* moins lisible et moins testable.
+
+Il est préférable de séparer les responsabilités (ex : `ServiceUser`, `ServiceRoom`, `ServiceBooking`), pour une meilleure modularité, maintenabilité et réutilisabilité du code.
 
 
 
-### 2. Pourquoi choisir que `setRoom` n’affecte pas les réservations passées ? Quelle autre approche possible ? Quelle recommandation ?
+### 2. Pourquoi choisir que `setRoom` n’affecte pas les réservations passées ? Quelle autre approche ? Quelle recommandation ?
 
-**Autre approche :**  
-On pourrait faire en sorte que toute
-modification d’une chambre (type ou prix) 
-soit répercutée rétroactivement sur les 
-réservations déjà créées.
+Parce que quand quelqu’un réserve une chambre, il l’a fait avec un prix et un type à ce moment-là. Si plus tard on change la chambre ( le prix ou le type ), c’est pas normal que ça change les réservations déjà faites.
+Sinon c’est comme dire au client : "Ah t’as réservé à 1000 dh, mais maintenant c’est 5000 dh, paye plus !"
 
-**Recommandation :**  
-Il est préférable de conserver u
-n « snapshot » (copie) de l’état 
-de la chambre dans chaque réservation a
-u moment de sa création. Ainsi, une rése
-rvation reflète toujours fidèlement les 
-conditions acceptées lors de la réservat
-
-ion, même si la chambre change par la suite. C
-’est plus fiable et conforme aux pratiques d
-es systèmes réels.
+**Recommandation :**
+Il est **préférable de conserver l’état de la chambre au moment de la réservation (type, prix, etc.). Ainsi, la réservation reflète **les conditions acceptées à l’instant t**, même si la chambre est modifiée par la suite.
