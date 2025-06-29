@@ -57,13 +57,9 @@ Les développements respectent les exigences des énoncés, utilisent **Java 11*
 
 ![classeHotel](https://github.com/user-attachments/assets/d4d1f00c-087b-41f9-88e1-c4a231a04cf7)
 
-###  Résultat de `printAll()` et `printAllUsers()`
 
-![image](https://github.com/user-attachments/assets/c397b5be-c81c-4ad6-971e-29b766536163)
-
-### Résultats des tests JUnit
-
-![image](https://github.com/user-attachments/assets/5ad6dcc4-14fa-40f2-b5ee-c82c06872bb0)
+### Résultats des tests JUnit,`printAll()` et `printAllUsers()`
+<img width="850" alt="image" src="https://github.com/user-attachments/assets/377fe7b4-bb43-43da-9065-56a0b5a2acae" />
 
 
 
