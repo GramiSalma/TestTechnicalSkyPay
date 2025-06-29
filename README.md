@@ -12,7 +12,7 @@ Les développements respectent les exigences des énoncés, utilisent **Java 11*
 
 
 
-##  Service Bancaire
+##  1.  Service Bancaire
 
 ###  Fonctionnalités
 
@@ -34,7 +34,7 @@ Les développements respectent les exigences des énoncés, utilisent **Java 11*
 
 ![image](https://github.com/user-attachments/assets/4ee322db-6c52-46dd-ba7e-91485c2dcfc7)
 
----
+
 
 ##  2. Système de Réservation d’Hôtel
 
@@ -75,10 +75,9 @@ C'est mieux de séparer les responsabilités (ex : `ServiceUser`, `ServiceRoom`,
 
 
 
-### 2. Pourquoi choisir que `setRoom` n’affecte pas les réservations passées ? Quelle autre approche ? Quelle recommandation ?
+### 2. Choisir que `setRoom` n’affecte pas les réservations passées, Quelle autre approche ? Quelle recommandation ?
 
-Parce que quand quelqu’un réserve une chambre, il l’a fait avec un prix et un type à ce moment-là. Si plus tard on change la chambre ( le prix ou le type ), c’est pas normal que ça change les réservations déjà faites.
-Sinon c’est comme dire au client : "Ah t’as réservé à 1000 dh, mais maintenant c’est 5000 dh, paye plus !"
+Quand quelqu’un réserve une chambre, il l’a fait avec un prix et un type à ce moment-là. Si plus tard on change la chambre ( le prix ou le type ), c’est pas normal que ça change les réservations déjà faites.
 
 **Recommandation :**
 On peut conserver l’état de la chambre au moment de la réservation (type, prix, etc.). Ainsi, la réservation reflète **les conditions acceptées à l’instant t**, même si la chambre est modifiée par la suite.
