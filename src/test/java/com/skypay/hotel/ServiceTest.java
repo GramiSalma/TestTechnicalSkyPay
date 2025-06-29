@@ -39,5 +39,8 @@ class ServiceTest {
         service.bookRoom(2, 3, sdf.parse("07/07/2026"), sdf.parse("08/07/2026"));
         // Modify room 1 (should not affect previous bookings)
         service.setRoom(1, RoomType.SUITE, 10000);
+        System.out.println("Affichage des réservations et utilisateurs actuels :");
+        service.printAll();
+        service.printAllUsers();
     }
 }
