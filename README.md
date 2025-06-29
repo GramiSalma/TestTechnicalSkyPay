@@ -20,7 +20,7 @@ appliquent une gestion rigoureuse des exceptions.
 - Dépôt et retrait d’argent sur un compte.
 - Affichage du relevé des transactions, du plus récent au plus ancien.
 - Gestion des erreurs : montants négatifs, solde insuffisant.
-- Aucune dépendance externe : stockage en mémoire.
+
 
 ### Structure
 
@@ -29,10 +29,14 @@ appliquent une gestion rigoureuse des exceptions.
 - `Transaction` : enregistrement d’une opération (date, montant, solde).
 
 ### Diagramme de classe
+![DiagramClasseBanking](https://github.com/user-attachments/assets/e805761e-66cd-4e79-9cb5-fc6eb5979e87)
 
-### Resultat de Print 
+### Resultat de printStatement() 
+![image](https://github.com/user-attachments/assets/ce56a85e-0b47-4c96-8589-3266a8afb197)
 
 ### Resultat de test JUNIT 
+![image](https://github.com/user-attachments/assets/8ce76ea8-ebdd-472b-a948-9cd44547c52f)
+
 
 
 
@@ -54,11 +58,15 @@ appliquent une gestion rigoureuse des exceptions.
 - Contrôle strict des erreurs et des périodes.
 
 ### Diagramme de classe
+![classeHotel](https://github.com/user-attachments/assets/d4d1f00c-087b-41f9-88e1-c4a231a04cf7)
 
 
-### Resultat de Print
+### Resultat de printAll() et printAllUsers()
+![image](https://github.com/user-attachments/assets/c397b5be-c81c-4ad6-971e-29b766536163)
 
-### Resultat de test
+
+### Resultat de test JUINIT
+![image](https://github.com/user-attachments/assets/5ad6dcc4-14fa-40f2-b5ee-c82c06872bb0)
 
 
 
@@ -68,18 +76,17 @@ appliquent une gestion rigoureuse des exceptions.
 
 ### 1. Est-il recommandé de placer toutes les fonctions dans le même service ? Expliquez.
 
-Non, ce n’est pas recommandé. 
+Non, ce n’est pas recommandé. Cela brule le pricipe de SingleResponsability. 
 Mettre toutes les fonctions dans 
 une seule classe/service 
 rend le code difficile à maintenir,
 à faire évoluer et à tester.
-Il est préférable de séparer les responsabilités
+C est mieux  de séparer les responsabilités
 (par exemple : ServiceUser, ServiceRoom, 
 ServiceBooking), ce qui améliore la lisibilité
 , la maintenance et la réutilisation du code.
 
 
----
 
 ### 2. Pourquoi choisir que `setRoom` n’affecte pas les réservations passées ? Quelle autre approche possible ? Quelle recommandation ?
 
