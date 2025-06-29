@@ -30,14 +30,9 @@ Les développements respectent les exigences des énoncés, utilisent **Java 11*
 
 ![DiagramClasseBanking](https://github.com/user-attachments/assets/e805761e-66cd-4e79-9cb5-fc6eb5979e87)
 
-###  Résultat de `printStatement()` ET des opérations invalides
+###   Résultats des tests JUnit :Erreurs et printStatement()
 
-![image](https://github.com/user-attachments/assets/3095e0b6-4abc-47a3-a44a-5dbd04e99453)
-
-
-###  Résultats des tests JUnit
-
-![image](https://github.com/user-attachments/assets/8ce76ea8-ebdd-472b-a948-9cd44547c52f)
+![image](https://github.com/user-attachments/assets/4ee322db-6c52-46dd-ba7e-91485c2dcfc7)
 
 ---
 
